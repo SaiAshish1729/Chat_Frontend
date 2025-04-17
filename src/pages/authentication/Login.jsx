@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { FaUser } from "react-icons/fa";
 import { IoKeySharp } from "react-icons/io5";
@@ -5,6 +6,25 @@ import { Link, useNavigate } from "react-router-dom";
 // import { useDispatch, useSelector } from "react-redux";
 
 const Login = () => {
+    const [loginData, setLoginData] = useState({
+        username: "",
+        password: "",
+    });
+    const handleInputChange = (e) => {
+        setLoginData((prev) => ({
+            ...prev,
+            [e.target.name]: e.target.value,
+        }));
+    };
+    const handleLogin = async () => {
+        console.log(loginData);
+        const res = await axios.post("http://localhost:5002/login", loginData);
+        console.log(res)
+        // const response = await dispatch(loginUserThunk(loginData));
+        // if (response?.payload?.success) {
+        //   navigate("/");
+        // }
+    };
     return (
         <div className="flex justify-center items-center p-6 min-h-screen bg-base-100">
             <div className="max-w-md w-full flex flex-col gap-5 bg-base-200 p-6 rounded-lg shadow-md">
@@ -17,6 +37,7 @@ const Login = () => {
                         name="username"
                         className="grow"
                         placeholder="Username"
+                        onChange={handleInputChange}
                     />
                 </label>
 
@@ -27,20 +48,11 @@ const Login = () => {
                         name="password"
                         placeholder="Password"
                         className="grow"
+                        onChange={handleInputChange}
                     />
                 </label>
 
-                {/* <label className="input input-bordered flex items-center gap-2 w-full">
-                    <IoKeySharp />
-                    <input
-                        type="password"
-                        name="confirmPassword"
-                        placeholder="Confirm Password"
-                        className="grow"
-                    />
-                </label> */}
-
-                <button className="btn btn-primary w-full">
+                <button className="btn btn-primary w-full" onClick={handleLogin}>
                     Login
                 </button>
 
