@@ -9,15 +9,15 @@ function App() {
 
   return (
     <>
-      <h1 className='bg-red-500'>Hellow world...</h1>
-      <button class="btn btn-active btn-secondary">Secondary</button>
+      {/* <h1 className='bg-red-500'>Hellow world...</h1>
+      <button class="btn btn-active btn-secondary">Secondary</button> */}
 
-      <Routes>
+      {/* <Routes>
         <Route path="/" exact element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/sign-up" element={<SignUp />} />
 
-      </Routes>
+      </Routes> */}
 
     </>
   )
