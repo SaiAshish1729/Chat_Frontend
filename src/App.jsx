@@ -1,23 +1,21 @@
 // import './App.css'
 
-import { Route, Routes } from "react-router-dom"
-import Login from "./pages/authentication/Login"
-import Home from "./pages/home/Home"
-import SignUp from "./pages/authentication/SignUp"
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux"
+import { Login } from "./store/slice/user/user.slice";
+import { loginUserThunk } from "./store/slice/user/user.thunk";
 
 function App() {
+  const state = useSelector(state => state.userReducer.isAuthenticated);
+  console.log(state);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(loginUserThunk())
+  }, [])
 
   return (
     <>
-      {/* <h1 className='bg-red-500'>Hellow world...</h1>
-      <button class="btn btn-active btn-secondary">Secondary</button> */}
-
-      {/* <Routes>
-        <Route path="/" exact element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/sign-up" element={<SignUp />} />
-
-      </Routes> */}
 
     </>
   )

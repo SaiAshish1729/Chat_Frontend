@@ -1,0 +1,8 @@
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+
+export const loginUserThunk = createAsyncThunk(
+    'users/fetchByIdStatus',
+    async () => {
+        console.log("Hellow Thunk !")
+    },
+)
