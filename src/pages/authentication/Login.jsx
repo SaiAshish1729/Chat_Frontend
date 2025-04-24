@@ -1,11 +1,16 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import { FaUser } from "react-icons/fa";
 import { IoKeySharp } from "react-icons/io5";
+import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from "react-router-dom";
+import { loginUserThunk } from '../../store/slice/user/user.thunk';
 // import { useDispatch, useSelector } from "react-redux";
 
 const Login = () => {
+    const navigate = useNavigate();
+
     const [loginData, setLoginData] = useState({
         username: "",
         password: "",
@@ -16,14 +21,14 @@ const Login = () => {
             [e.target.name]: e.target.value,
         }));
     };
+    const dispatch = useDispatch();
     const handleLogin = async () => {
-        console.log(loginData);
-        const res = await axios.post("http://localhost:5002/login", loginData);
-        console.log(res)
-        // const response = await dispatch(loginUserThunk(loginData));
-        // if (response?.payload?.success) {
-        //   navigate("/");
-        // }
+        const resp = await dispatch(loginUserThunk(loginData));
+        console.log("Resp : ", resp);
+        if (resp.payload?.success == true) {
+            toast.success(resp.payload.message);
+            // navigate("/")
+        }
     };
     return (
         <div className="flex justify-center items-center p-6 min-h-screen bg-base-100">

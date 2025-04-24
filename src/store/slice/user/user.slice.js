@@ -19,6 +19,7 @@ export const userSlice = createSlice({
     extraReducers: (builder) => {
         builder.addCase(loginUserThunk.fulfilled, (state, action) => {
             console.log("Fulfilled")
+            // console.log("pyload : ", action.payload)
         });
         builder.addCase(loginUserThunk.pending, (state, action) => {
             console.log("Pending ...")

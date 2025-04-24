@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { Login } from "./store/slice/user/user.slice";
 import { loginUserThunk } from "./store/slice/user/user.thunk";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   const state = useSelector(state => state.userReducer.isAuthenticated);
@@ -16,7 +17,7 @@ function App() {
 
   return (
     <>
-
+      <Toaster position="top-center" reverseOrder={false} />
     </>
   )
 }
