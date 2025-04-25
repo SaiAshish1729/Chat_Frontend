@@ -8,7 +8,7 @@ import { Toaster } from "react-hot-toast";
 
 function App() {
   const state = useSelector(state => state.userReducer.isAuthenticated);
-  console.log(state);
+  console.log("isauthenticated : ", state);
   const dispatch = useDispatch();
 
   useEffect(() => {

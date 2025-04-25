@@ -5,8 +5,9 @@ import { loginUserThunk } from './user.thunk'
 const initialState = {
     isAuthenticated: false,
     screenLoading: false,
+    userProfile: null,
+    buttonLoading: false,
 }
-
 export const userSlice = createSlice({
     name: 'user',
     initialState,
@@ -18,14 +19,18 @@ export const userSlice = createSlice({
 
     extraReducers: (builder) => {
         builder.addCase(loginUserThunk.fulfilled, (state, action) => {
-            console.log("Fulfilled")
             // console.log("pyload : ", action.payload)
+            state.userProfile = action.payload?.data
+            state.isAuthenticated = true;
+            state.buttonLoading = false
         });
         builder.addCase(loginUserThunk.pending, (state, action) => {
             console.log("Pending ...")
+            state.buttonLoading = true
         });
         builder.addCase(loginUserThunk.rejected, (state, action) => {
             console.log("Rejected")
+            state.buttonLoading = false
         });
     },
 

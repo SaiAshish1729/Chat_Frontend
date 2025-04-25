@@ -3,8 +3,12 @@ import toast from "react-hot-toast";
 import { FaUser } from "react-icons/fa";
 import { IoKeySharp } from "react-icons/io5";
 import { Link, useNavigate } from "react-router-dom";
+import { registerUserThunk } from "../../store/slice/user/user.thunk";
+import { useDispatch } from "react-redux";
 
 const SignUp = () => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [signupData, setSignupData] = useState({
         fullName: "",
         username: "",
@@ -25,10 +29,12 @@ const SignUp = () => {
             return toast.error("Password and confirm password do not match");
         }
         console.log(signupData)
-        // const response = await dispatch(registerUserThunk(signupData));
-        // if (response?.payload?.success) {
-        //   navigate("/");
-        // }
+        const response = await dispatch(registerUserThunk(signupData));
+        console.log("response : ", response);
+        toast.success(response.payload.message);
+        if (response?.payload?.success == true) {
+            navigate("/login");
+        }
     };
     return (
         <div className="flex justify-center items-center p-6 min-h-screen bg-base-100">

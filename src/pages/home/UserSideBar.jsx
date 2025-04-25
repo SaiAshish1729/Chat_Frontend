@@ -1,8 +1,16 @@
 import React from 'react';
 import { IoSearch } from 'react-icons/io5';
 import User from './User';
+import { useDispatch } from 'react-redux';
+import { logoutUserThunk } from '../../store/slice/user/user.thunk';
+import toast from 'react-hot-toast';
 
 const UserSideBar = () => {
+    const dispatch = useDispatch();
+    const handleLogout = async () => {
+        const res = await dispatch(logoutUserThunk());
+        toast.success(res.payload.message);
+    }
     return (
         <div className="max-w-[20em] w-full h-screen flex flex-col border-r border-r-white/10">
             <h1 className="bg-black mx-3 rounded-lg mt-3 px-2 py-1 text-[#7480FF] text-xl font-semibold">
@@ -42,7 +50,7 @@ const UserSideBar = () => {
                     {/* <h2>{userProfile?.username}</h2> */}
                 </div>
 
-                <button className="btn btn-primary btn-sm px-4">
+                <button onClick={handleLogout} className="btn btn-primary btn-sm px-4">
                     Logout
                 </button>
             </div>
