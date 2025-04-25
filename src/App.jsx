@@ -1,8 +1,5 @@
-// import './App.css'
-
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
-import { Login } from "./store/slice/user/user.slice";
 import { loginUserThunk } from "./store/slice/user/user.thunk";
 import { Toaster } from "react-hot-toast";
 

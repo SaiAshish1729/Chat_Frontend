@@ -45,3 +45,16 @@ export const logoutUserThunk = createAsyncThunk(
         }
     },
 )
+
+export const userProfileThunk = createAsyncThunk(
+    'user/get-profile',
+    async (_, { rejectWithValue }) => {
+        try {
+            const res = await axiosInstance.get("/user-profile");
+            return res.data;
+        } catch (error) {
+            console.log(error);
+            toast.error(error.response.data.message)
+        }
+    },
+)
