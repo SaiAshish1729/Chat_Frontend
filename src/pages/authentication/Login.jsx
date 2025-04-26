@@ -1,8 +1,8 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { FaUser } from "react-icons/fa";
 import { IoKeySharp } from "react-icons/io5";
-import { Link, useNavigate } from "react-router-dom";
+import { Link,  } from "react-router-dom";
 // import { useDispatch, useSelector } from "react-redux";
 
 const Login = () => {
@@ -67,4 +67,4 @@ const Login = () => {
     );
 }
 
-export default Login;
+export default Login
