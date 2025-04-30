@@ -3,10 +3,9 @@ import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { FaUser } from "react-icons/fa";
 import { IoKeySharp } from "react-icons/io5";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from "react-router-dom";
 import { loginUserThunk } from '../../store/slice/user/user.thunk';
-// import { useDispatch, useSelector } from "react-redux";
 
 const Login = () => {
     const navigate = useNavigate();
@@ -24,12 +23,20 @@ const Login = () => {
     const dispatch = useDispatch();
     const handleLogin = async () => {
         const resp = await dispatch(loginUserThunk(loginData));
-        console.log("Resp : ", resp);
         if (resp.payload?.success == true) {
             toast.success(resp.payload.message);
             navigate("/")
         }
     };
+
+    const { isAuthenticated } = useSelector((state) => state.userReducer);
+    useEffect(() => {
+        const storedUser = localStorage.getItem('user');
+        if (storedUser) {
+            // dispatch(loggedInUser(JSON.parse(storedUser)));
+            navigate("/")
+        }
+    }, []);
     return (
         <div className="flex justify-center items-center p-6 min-h-screen bg-base-100">
             <div className="max-w-md w-full flex flex-col gap-5 bg-base-200 p-6 rounded-lg shadow-md">

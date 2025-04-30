@@ -1,6 +1,7 @@
 import React from 'react';
 
-const User = () => {
+const User = ({ userDetails }) => {
+    console.log("userDetails_props : ", userDetails)
     return (
         <>
             {/* <div className="avatar avatar-online">
@@ -19,12 +20,12 @@ const User = () => {
                 <div className={`avatar online}`}>
                     <div className="w-12 rounded-full">
                         {/* <img src={userDetails?.avatar} /> */}
-                        <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                        <img src={userDetails?.avatar} />
                     </div>
                 </div>
                 <div>
-                    <h2 className="line-clamp-1">Full_Name</h2>
-                    <p className="text-xs">Ashish</p>
+                    <h2 className="line-clamp-1">{userDetails?.fullName}</h2>
+                    <p className="text-xs">{userDetails?.username}</p>
                 </div>
             </div>
 

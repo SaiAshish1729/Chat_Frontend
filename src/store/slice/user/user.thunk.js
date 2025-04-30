@@ -38,6 +38,7 @@ export const logoutUserThunk = createAsyncThunk(
     async (_, { rejectWithValue }) => {
         try {
             const res = await axiosInstance.get("/logout");
+            localStorage.removeItem("user")
             return res.data;
         } catch (error) {
             console.log(error);
@@ -57,4 +58,20 @@ export const userProfileThunk = createAsyncThunk(
             toast.error(error.response.data.message)
         }
     },
+
+)
+
+export const getOtherUserThunk = createAsyncThunk(
+    'user/getOtherUsers',
+    async (_, { rejectWithValue }) => {
+        try {
+            const res = await axiosInstance.get("/other-users");
+            return res.data;
+        } catch (error) {
+            console.log(error);
+            toast.error(error.response.data.message)
+        }
+    },
+
+
 )
