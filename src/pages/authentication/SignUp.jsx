@@ -4,7 +4,7 @@ import { FaUser } from "react-icons/fa";
 import { IoKeySharp } from "react-icons/io5";
 import { Link, useNavigate } from "react-router-dom";
 import { registerUserThunk } from "../../store/slice/user/user.thunk";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const SignUp = () => {
     const dispatch = useDispatch();
@@ -28,14 +28,21 @@ const SignUp = () => {
         if (signupData.password !== signupData.confirmPassword) {
             return toast.error("Password and confirm password do not match");
         }
-        console.log(signupData)
         const response = await dispatch(registerUserThunk(signupData));
-        console.log("response : ", response);
         toast.success(response.payload.message);
         if (response?.payload?.success == true) {
             navigate("/login");
         }
     };
+
+    const { isAuthenticated } = useSelector((state) => state.userReducer);
+    useEffect(() => {
+        console.log("is_auth :".isAuthenticated)
+        if (isAuthenticated) {
+            navigate("/");
+        }
+    }, [isAuthenticated])
+
     return (
         <div className="flex justify-center items-center p-6 min-h-screen bg-base-100">
             <div className="max-w-md w-full flex flex-col gap-5 bg-base-200 p-6 rounded-lg shadow-md">
