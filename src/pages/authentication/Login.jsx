@@ -1,5 +1,4 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import { FaUser } from "react-icons/fa";
 import { IoKeySharp } from "react-icons/io5";
