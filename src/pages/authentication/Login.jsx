@@ -25,7 +25,7 @@ const Login = () => {
         const resp = await dispatch(loginUserThunk(loginData));
         if (resp.payload?.success == true) {
             toast.success(resp.payload.message);
-            navigate("/")
+            navigate("/");
         }
     };
 
