@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { createSlice } from '@reduxjs/toolkit'
 import { getOtherUserThunk, loginUserThunk, logoutUserThunk } from './user.thunk'
 
@@ -8,16 +9,14 @@ const initialState = {
     buttonLoading: true,
     userProfile: null,
     otherUsers: null,
+    selectedUser: null,
 }
 export const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
-        loggedInUser: (state, action) => {
-            const user = action.payload;
-            state.userProfile = user;
-            state.isAuthenticated = !!user;
-            state.screenLoading = false;
+        setSelectedUser: (state, action) => {
+            state.selectedUser = action.payload;
         }
     },
 
@@ -28,7 +27,6 @@ export const userSlice = createSlice({
             state.userProfile = user
             state.isAuthenticated = true;
             state.buttonLoading = false
-
             localStorage.setItem('user', JSON.stringify(user));
         });
         builder.addCase(loginUserThunk.pending, (state, action) => {
@@ -57,12 +55,10 @@ export const userSlice = createSlice({
 
         builder.addCase(logoutUserThunk.rejected, (state, action) => {
             // console.log("Rejected")
-
         });
 
         // other user's list
         builder.addCase(getOtherUserThunk.pending, (state, action) => {
-            // console.log("Pending ...")
             state.screenLoading = true;
         });
         builder.addCase(getOtherUserThunk.fulfilled, (state, action) => {
@@ -80,7 +76,7 @@ export const userSlice = createSlice({
 })
 
 
-export const { Login } = userSlice.actions
+export const { setSelectedUser } = userSlice.actions
 
 // export default userSlice.reducer
 export const userReducer = userSlice.reducer;

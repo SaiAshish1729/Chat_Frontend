@@ -1,25 +1,22 @@
-import React from 'react';
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setSelectedUser } from "../../store/slice/user/user.slice";
 
 const User = ({ userDetails }) => {
-    console.log("userDetails_props : ", userDetails)
+    const dispatch = useDispatch();
+    const { selectedUser } = useSelector((state) => state.userReducer);
+    const handleUserClick = () => {
+        dispatch(setSelectedUser(userDetails));
+    };
     return (
         <>
-            {/* <div className="avatar avatar-online">
-                <div className="w-24 rounded-full">
-                    <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
-                </div>
-            </div> */}
-
             <div
-                // onClick={handleUserClick}
-                className={`flex gap-5 items-center hover:bg-gray-700 rounded-lg py-1 px-2 cursor-pointer
-                   
+                onClick={handleUserClick}
+                className={`flex gap-5 items-center hover:bg-gray-700 rounded-lg py-1 px-2 cursor-pointer ${userDetails?._id === selectedUser?._id && "bg-gray-700"
                     }`}
             >
-                {/* <div className={`avatar ${isUserOnline && 'online'}`}> */}
-                <div className={`avatar online}`}>
+                <div className={`avatar`}>
                     <div className="w-12 rounded-full">
-                        {/* <img src={userDetails?.avatar} /> */}
                         <img src={userDetails?.avatar} />
                     </div>
                 </div>
@@ -28,10 +25,8 @@ const User = ({ userDetails }) => {
                     <p className="text-xs">{userDetails?.username}</p>
                 </div>
             </div>
-
         </>
-
     );
-}
+};
 
 export default User;

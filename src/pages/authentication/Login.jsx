@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import toast from 'react-hot-toast';
 import { FaUser } from "react-icons/fa";
 import { IoKeySharp } from "react-icons/io5";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from "react-router-dom";
 import { loginUserThunk } from '../../store/slice/user/user.thunk';
+// eslint-disable-next-line no-unused-vars
 
 const Login = () => {
     const navigate = useNavigate();
@@ -28,7 +29,7 @@ const Login = () => {
         }
     };
 
-    const { isAuthenticated } = useSelector((state) => state.userReducer);
+    // const { isAuthenticated } = useSelector((state) => state.userReducer);
     useEffect(() => {
         const storedUser = localStorage.getItem('user');
         if (storedUser) {

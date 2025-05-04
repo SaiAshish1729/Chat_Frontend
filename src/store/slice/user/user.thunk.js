@@ -1,7 +1,7 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+/* eslint-disable no-unused-vars */
+import { createAsyncThunk } from '@reduxjs/toolkit'
 import { axiosInstance } from '../../../Components/utilities/axiosInstance';
 import toast from 'react-hot-toast';
-import { useNavigate } from 'react-router-dom';
 
 export const loginUserThunk = createAsyncThunk(
     'user/login',
