@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
-import { getOtherUserThunk, loginUserThunk } from "./store/slice/user/user.thunk";
+import { getOtherUserThunk, loginUserThunk, userProfileThunk } from "./store/slice/user/user.thunk";
 import { Toaster } from "react-hot-toast";
 
 function App() {
@@ -11,6 +11,7 @@ function App() {
 
   useEffect(() => {
     dispatch(loginUserThunk());
+    dispatch(userProfileThunk());
     // dispatch(getOtherUserThunk());
   }, [])
 

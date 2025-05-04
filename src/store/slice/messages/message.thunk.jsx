@@ -20,7 +20,7 @@ export const sendMessageThunk = createAsyncThunk(
 )
 
 export const getMessageThunk = createAsyncThunk(
-    'message/get-messages',
+    'message/get',
     async ({ receiverId }, { rejectWithValue }) => {
         try {
             const res = await axiosInstance.get(`/get-messages/${receiverId}`);

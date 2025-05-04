@@ -3,13 +3,14 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import User from './User';
 import { getMessageThunk } from '../../store/slice/messages/message.thunk';
+import Message from './Message';
 
 const MessageContainer = () => {
     const dispatch = useDispatch();
     const { selectedUser } = useSelector((state) => state.userReducer);
     // console.log("selected_user_messages : ", selectedUser);
-    // const { messages } = useSelector((state) => state.messageReducer);
-    // console.log("messages : ", messages)
+    const { messages } = useSelector((state) => state.messageReducer);
+    console.log("messages : ", messages)
 
     useEffect(() => {
         if (selectedUser?._id) {
@@ -30,7 +31,7 @@ const MessageContainer = () => {
                         <User userDetails={selectedUser} />
                     </div>
 
-                    {/* <div className="h-full overflow-y-auto p-3">
+                    <div className="h-full overflow-y-auto p-3">
                         {messages?.map((messageDetails) => {
                             return (
                                 <Message
@@ -39,7 +40,7 @@ const MessageContainer = () => {
                                 />
                             );
                         })}
-                    </div> */}
+                    </div>
 
                     {/* <SendMessage /> */}
 

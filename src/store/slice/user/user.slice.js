@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { createSlice } from '@reduxjs/toolkit'
-import { getOtherUserThunk, loginUserThunk, logoutUserThunk } from './user.thunk'
+import { getOtherUserThunk, loginUserThunk, logoutUserThunk, userProfileThunk } from './user.thunk'
 
 
 const initialState = {
@@ -62,15 +62,28 @@ export const userSlice = createSlice({
             state.screenLoading = true;
         });
         builder.addCase(getOtherUserThunk.fulfilled, (state, action) => {
-            // console.log("Fulfilled.");
             state.screenLoading = false;
             state.otherUsers = action.payload?.data
-            console.log("other_users : ", action.payload);
         });
-
         builder.addCase(getOtherUserThunk.rejected, (state, action) => {
             // console.log("Rejected")
         });
+
+        // user profile userProfileThunk
+        builder.addCase(userProfileThunk.fulfilled, (state, action) => {
+            const user = action.payload?.data;
+            state.isAuthenticated = true;
+            state.buttonLoading = false
+            state.userProfile = user;
+        });
+        builder.addCase(userProfileThunk.pending, (state, action) => {
+            console.log("Profile Pending ...")
+        });
+        builder.addCase(userProfileThunk.rejected, (state, action) => {
+            console.log("Profile Rejected")
+            state.buttonLoading = false
+        });
+
     },
 
 })

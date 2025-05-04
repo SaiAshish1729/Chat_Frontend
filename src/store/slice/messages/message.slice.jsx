@@ -36,14 +36,9 @@ export const messageSlice = createSlice({
         builder.addCase(getMessageThunk.pending, (state, action) => {
             state.buttonLoading = true;
         });
-        // builder.addCase(getMessageThunk.fulfilled, (state, action) => {
-        //     console.log("Fulfilled_get_message :", action.payload);
-        //     state.messages = action.payload;
-        //     state.buttonLoading = false;
-        // });
         builder.addCase(getMessageThunk.fulfilled, (state, action) => {
             console.log("Fulfilled_get_message :", action.payload);
-            state.messages = action.payload.data; // ✅ Only store the messages array
+            state.messages = action.payload.data;
             state.buttonLoading = false;
         });
 
