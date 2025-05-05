@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import User from './User';
 import { getMessageThunk } from '../../store/slice/messages/message.thunk';
 import Message from './Message';
+import SendMessage from './SendMessage';
 
 const MessageContainer = () => {
     const dispatch = useDispatch();
@@ -42,7 +43,7 @@ const MessageContainer = () => {
                         })}
                     </div>
 
-                    {/* <SendMessage /> */}
+                    <SendMessage />
 
                 </div>
             )}

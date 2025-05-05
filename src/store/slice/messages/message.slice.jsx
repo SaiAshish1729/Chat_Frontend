@@ -6,17 +6,17 @@ import { sendMessageThunk, getMessageThunk } from './message.thunk.jsx';
 const initialState = {
     buttonLoading: false,
     screenLoading: false,
-    messages: null,
+    messages: [],
 };
 
 export const messageSlice = createSlice({
     name: 'message',
     initialState,
     reducers: {
-        setNewMessage: (state, action) => {
-            const oldMessages = state.messages ?? [];
-            state.messages = [...oldMessages, action.payload];
-        },
+        // setNewMessage: (state, action) => {
+        //     const oldMessages = state.messages ?? [];
+        //     state.messages = [...oldMessages, action.payload];
+        // },
     },
 
     extraReducers: (builder) => {
@@ -26,8 +26,10 @@ export const messageSlice = createSlice({
         });
         builder.addCase(sendMessageThunk.fulfilled, (state, action) => {
             console.log("Fulfilled_send_message :", action.payload);
+            state.messages = [...state.messages, action.payload.data]
             state.buttonLoading = false;
         });
+
         builder.addCase(sendMessageThunk.rejected, (state, action) => {
             state.buttonLoading = false;
         });
@@ -39,6 +41,7 @@ export const messageSlice = createSlice({
         builder.addCase(getMessageThunk.fulfilled, (state, action) => {
             console.log("Fulfilled_get_message :", action.payload);
             state.messages = action.payload.data;
+            // state.messages = [...(state.messages ?? []), action.payload.data];
             state.buttonLoading = false;
         });
 

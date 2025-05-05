@@ -42,7 +42,6 @@ export const userSlice = createSlice({
 
         // logout user
         builder.addCase(logoutUserThunk.pending, (state, action) => {
-            // console.log("Pending ...")
             state.screenLoading = true;
         });
         builder.addCase(logoutUserThunk.fulfilled, (state, action) => {
@@ -50,7 +49,6 @@ export const userSlice = createSlice({
             state.isAuthenticated = false;
             state.screenLoading = false;
             state.userProfile = null;
-            // console.log("Payload : ", action.payload);
         });
 
         builder.addCase(logoutUserThunk.rejected, (state, action) => {

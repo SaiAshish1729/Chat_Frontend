@@ -3,22 +3,23 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 const Message = ({ messageDetails }) => {
-    // console.log("details : ", messageDetails)
-    const { userProfile } = useSelector((state) => state.userReducer);
-
-    return (
-        <>
-            <div
-                // ref={messageRef}
-                className={`chat ${userProfile?._id === messageDetails?.senderId
-                    ? "chat-end"
-                    : "chat-start"
-                    }`}
-            >
-                {/* <div className="chat-image avatar">
+  // console.log("details : ", messageDetails)
+  const { userProfile, selectedUser } = useSelector((state) => state.userReducer);
+  console.log("userprofile_id", userProfile?._id, "sender_id", messageDetails?.senderId)
+  console.log("Ids : ", userProfile?._id === messageDetails?.senderId)
+  return (
+    <>
+      <div
+        // ref={messageRef}
+        className={`chat ${userProfile?._id === messageDetails?.senderId
+          ? "chat-end"
+          : "chat-start"
+          }`}
+      >
+        <div className="chat-image avatar">
           <div className="w-10 rounded-full">
             <img
-              alt="Tailwind CSS chat bubble component"
+              alt="Img"
               src={
                 userProfile?._id === messageDetails?.senderId
                   ? userProfile?.avatar
@@ -26,14 +27,14 @@ const Message = ({ messageDetails }) => {
               }
             />
           </div>
-        </div> */}
-                <div className="chat-header">
-                    <time className="text-xs opacity-50">12:45</time>
-                </div>
-                <div className="chat-bubble">{messageDetails?.message}</div>
-            </div>
-        </>
-    );
+        </div>
+        <div className="chat-header">
+          <time className="text-xs opacity-50">12:45</time>
+        </div>
+        <div className="chat-bubble">{messageDetails?.message}</div>
+      </div>
+    </>
+  );
 }
 
 export default Message;
