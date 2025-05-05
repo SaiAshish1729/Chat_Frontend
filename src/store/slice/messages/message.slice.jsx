@@ -26,7 +26,12 @@ export const messageSlice = createSlice({
         });
         builder.addCase(sendMessageThunk.fulfilled, (state, action) => {
             // console.log("Fulfilled_send_message :", action.payload);
-            state.messages = [...state.messages, action.payload.data]
+            // state.messages = [...state.messages, action.payload.data]
+            if (Array.isArray(state.messages)) {
+                state.messages = [...state.messages, action.payload.data];
+            } else {
+                state.messages = [action.payload.data]; // fallback for null or corrupted state
+            }
             state.buttonLoading = false;
         });
 
