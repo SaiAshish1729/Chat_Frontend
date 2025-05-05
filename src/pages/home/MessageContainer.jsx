@@ -11,7 +11,7 @@ const MessageContainer = () => {
     const { selectedUser } = useSelector((state) => state.userReducer);
     // console.log("selected_user_messages : ", selectedUser);
     const { messages } = useSelector((state) => state.messageReducer);
-    console.log("messages : ", messages)
+    // console.log("messages : ", messages)
 
     useEffect(() => {
         if (selectedUser?._id) {

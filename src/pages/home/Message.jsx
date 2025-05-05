@@ -5,8 +5,7 @@ import { useSelector } from 'react-redux';
 const Message = ({ messageDetails }) => {
   // console.log("details : ", messageDetails)
   const { userProfile, selectedUser } = useSelector((state) => state.userReducer);
-  console.log("userprofile_id", userProfile?._id, "sender_id", messageDetails?.senderId)
-  console.log("Ids : ", userProfile?._id === messageDetails?.senderId)
+
   return (
     <>
       <div

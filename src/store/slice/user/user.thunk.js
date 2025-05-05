@@ -38,7 +38,8 @@ export const logoutUserThunk = createAsyncThunk(
     async (_, { rejectWithValue }) => {
         try {
             const res = await axiosInstance.get("/logout");
-            localStorage.removeItem("user")
+            // localStorage.removeItem("user")
+            localStorage.clear();
             return res.data;
         } catch (error) {
             console.log(error);

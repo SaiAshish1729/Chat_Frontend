@@ -12,7 +12,6 @@ function App() {
   useEffect(() => {
     dispatch(loginUserThunk());
     dispatch(userProfileThunk());
-    // dispatch(getOtherUserThunk());
   }, [])
 
   return (

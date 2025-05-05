@@ -15,7 +15,7 @@ const UserSideBar = () => {
         navigate("/login");
     }
 
-    const { otherUsers } = useSelector(state => state.userReducer);
+    const { otherUsers, userProfile } = useSelector(state => state.userReducer);
     // console.log("OtherUsers : ", otherUsers);
 
     useEffect(() => {
@@ -51,11 +51,11 @@ const UserSideBar = () => {
                 <div className="flex items-center gap-3">
                     <div className="avatar">
                         <div className="ring-primary ring-offset-base-100 w-10 rounded-full ring ring-offset-2">
-                            {/* <img src={userProfile?.avatar} /> */}
-                            <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                            <img src={userProfile?.avatar} />
+                            {/* <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" /> */}
                         </div>
                     </div>
-                    {/* <h2>{userProfile?.username}</h2> */}
+                    <h2>{userProfile?.username}</h2>
                 </div>
 
                 <button onClick={handleLogout} className="btn btn-primary btn-sm px-4">

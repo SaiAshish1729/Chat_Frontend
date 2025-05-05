@@ -25,7 +25,7 @@ export const messageSlice = createSlice({
             state.buttonLoading = true;
         });
         builder.addCase(sendMessageThunk.fulfilled, (state, action) => {
-            console.log("Fulfilled_send_message :", action.payload);
+            // console.log("Fulfilled_send_message :", action.payload);
             state.messages = [...state.messages, action.payload.data]
             state.buttonLoading = false;
         });
@@ -39,7 +39,7 @@ export const messageSlice = createSlice({
             state.buttonLoading = true;
         });
         builder.addCase(getMessageThunk.fulfilled, (state, action) => {
-            console.log("Fulfilled_get_message :", action.payload);
+            // console.log("Fulfilled_get_message :", action.payload);
             state.messages = action.payload.data;
             // state.messages = [...(state.messages ?? []), action.payload.data];
             state.buttonLoading = false;
