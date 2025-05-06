@@ -1,0 +1,31 @@
+import { createSlice } from "@reduxjs/toolkit";
+import io from "socket.io-client"
+
+const initialState = {
+    buttonLoading: false,
+    screenLoading: false,
+    socket: null
+};
+
+export const socketSlice = createSlice({
+    name: "socket",
+    initialState,
+    reducers: {
+        initializeSocket: (state, action) => {
+            const socket = io(import.meta.env.VITE_DB_ORIGIN, {
+                query: {
+                    userId: action.payload,
+                },
+            });
+            state.socket = socket;
+        },
+
+        setOnlineUsers: (state, action) => {
+            state.onlineUsers = action.payload;
+        },
+    },
+});
+
+
+export const { initializeSocket } = socketSlice.actions
+export const socketReducer = socketSlice.reducer;

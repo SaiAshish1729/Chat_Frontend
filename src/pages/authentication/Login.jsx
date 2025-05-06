@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import toast from 'react-hot-toast';
 import { FaUser } from "react-icons/fa";
 import { IoKeySharp } from "react-icons/io5";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from "react-router-dom";
 import { loginUserThunk } from '../../store/slice/user/user.thunk';
 // eslint-disable-next-line no-unused-vars
@@ -37,6 +37,9 @@ const Login = () => {
             navigate("/")
         }
     }, []);
+
+    const { isAuthenticated } = useSelector((state) => state.userReducer);
+    console.log("42. isAuth : ", isAuthenticated);
     return (
         <div className="flex justify-center items-center p-6 min-h-screen bg-base-100">
             <div className="max-w-md w-full flex flex-col gap-5 bg-base-200 p-6 rounded-lg shadow-md">

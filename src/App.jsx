@@ -5,7 +5,7 @@ import { getOtherUserThunk, loginUserThunk, userProfileThunk } from "./store/sli
 import { Toaster } from "react-hot-toast";
 
 function App() {
-  const state = useSelector(state => state.userReducer.isAuthenticated);
+  // const state = useSelector(state => state.userReducer.isAuthenticated);
   // console.log("isauthenticated : ", state);
   const dispatch = useDispatch();
 
