@@ -38,8 +38,7 @@ const Login = () => {
         }
     }, []);
 
-    const { isAuthenticated } = useSelector((state) => state.userReducer);
-    console.log("42. isAuth : ", isAuthenticated);
+
     return (
         <div className="flex justify-center items-center p-6 min-h-screen bg-base-100">
             <div className="max-w-md w-full flex flex-col gap-5 bg-base-200 p-6 rounded-lg shadow-md">

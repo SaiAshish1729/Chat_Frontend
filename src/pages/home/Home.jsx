@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import MessageContainer from './MessageContainer.jsx';
 import UserSideBar from './UserSideBar.jsx';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { initializeSocket, setOnlineUsers } from '../../store/slice/socket/socket.slice.jsx';
 
 const Home = () => {
-    // const { isAuthenticated } = useSelector((state) => state.userreducer);
-    // console.log("isAuth : ", isAuthenticated);
+    const dispatch = useDispatch();
+    const { isAuthenticated, userProfile } = useSelector((state) => state.userReducer);
 
+    useEffect(() => {
+        if (!isAuthenticated) return
+        dispatch(initializeSocket(userProfile?._id), setOnlineUsers(userProfile?._id));
+    }, [isAuthenticated])
     return (
         <div className="flex">
             {/* <h1>Home Page</h1> */}
@@ -16,4 +21,4 @@ const Home = () => {
     );
 }
 
-export default Home;
+export default Home

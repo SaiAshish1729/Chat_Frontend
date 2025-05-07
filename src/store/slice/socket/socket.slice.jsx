@@ -4,7 +4,8 @@ import io from "socket.io-client"
 const initialState = {
     buttonLoading: false,
     screenLoading: false,
-    socket: null
+    socket: null,
+    onlineUsers: null,
 };
 
 export const socketSlice = createSlice({
@@ -18,14 +19,19 @@ export const socketSlice = createSlice({
                 },
             });
             state.socket = socket;
+            // socket.on("onlineUsers", (onlineUsers) => {
+            //     console.log("onlineUsers", onlineUsers)
+            // })
         },
 
         setOnlineUsers: (state, action) => {
+            console.log("payload ", action.payload)
             state.onlineUsers = action.payload;
+            console.log(onlineUsers)
         },
     },
 });
 
 
-export const { initializeSocket } = socketSlice.actions
+export const { initializeSocket, setOnlineUsers } = socketSlice.actions
 export const socketReducer = socketSlice.reducer;
