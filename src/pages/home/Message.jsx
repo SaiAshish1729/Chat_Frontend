@@ -1,15 +1,24 @@
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 
 const Message = ({ messageDetails }) => {
   // console.log("details : ", messageDetails)
   const { userProfile, selectedUser } = useSelector((state) => state.userReducer);
 
+  const messageRef = useRef(null);
+
+  useEffect(() => {
+    if (messageRef.current) {
+      messageRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+
+  }, []);
+
   return (
     <>
       <div
-        // ref={messageRef}
+        ref={messageRef}
         className={`chat ${userProfile?._id === messageDetails?.senderId
           ? "chat-end"
           : "chat-start"

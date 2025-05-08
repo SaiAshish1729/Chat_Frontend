@@ -19,15 +19,10 @@ export const socketSlice = createSlice({
                 },
             });
             state.socket = socket;
-            // socket.on("onlineUsers", (onlineUsers) => {
-            //     console.log("onlineUsers", onlineUsers)
-            // })
         },
 
         setOnlineUsers: (state, action) => {
-            console.log("payload ", action.payload)
             state.onlineUsers = action.payload;
-            console.log(onlineUsers)
         },
     },
 });

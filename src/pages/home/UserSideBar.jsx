@@ -16,7 +16,6 @@ const UserSideBar = () => {
     }
 
     const { otherUsers, userProfile } = useSelector(state => state.userReducer);
-    // console.log("OtherUsers : ", otherUsers);
 
     useEffect(() => {
         dispatch(getOtherUserThunk());
