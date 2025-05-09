@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { IoSearch } from 'react-icons/io5';
 import User from './User';
 import { useDispatch, useSelector } from 'react-redux';
@@ -17,6 +17,25 @@ const UserSideBar = () => {
 
     const { otherUsers, userProfile } = useSelector(state => state.userReducer);
 
+    const [searchvalue, setSearchValue] = useState("")
+    const [user, setUser] = useState([]);
+
+    useEffect(() => {
+        if (!searchvalue) {
+            setUser(otherUsers);
+        } else {
+            setUser(
+                otherUsers.filter((user) => {
+                    return (
+                        user.username.toLowerCase().includes(searchvalue.toLowerCase()) ||
+                        user.fullName
+                            .toLowerCase()
+                            .includes(searchvalue.toLocaleLowerCase())
+                    )
+                })
+            )
+        }
+    }, [searchvalue, otherUsers]);
     useEffect(() => {
         dispatch(getOtherUserThunk());
     }, []);
@@ -29,7 +48,7 @@ const UserSideBar = () => {
             <div className="p-3">
                 <label className="input input-bordered flex items-center gap-2">
                     <input
-                        // onChange={(e) => setSearchValue(e.target.value)}
+                        onChange={(e) => setSearchValue(e.target.value)}
                         type="text"
                         className="grow"
                         placeholder="Search"
@@ -39,7 +58,7 @@ const UserSideBar = () => {
             </div>
 
             <div className="h-full overflow-y-auto px-3 flex flex-col gap-2">
-                {otherUsers?.map((userDetails) => {
+                {user?.map((userDetails) => {
                     return (
                         <User key={userDetails?._id} userDetails={userDetails} />
                     )
